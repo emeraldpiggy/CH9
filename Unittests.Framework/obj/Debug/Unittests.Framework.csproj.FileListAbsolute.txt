@@ -1,0 +1,5 @@
+C:\App\CH9\Unittests.Framework\bin\Debug\Unittests.Framework.dll
+C:\App\CH9\Unittests.Framework\bin\Debug\Unittests.Framework.pdb
+C:\App\CH9\Unittests.Framework\obj\Debug\Unittests.Framework.csprojResolveAssemblyReference.cache
+C:\App\CH9\Unittests.Framework\obj\Debug\Unittests.Framework.dll
+C:\App\CH9\Unittests.Framework\obj\Debug\Unittests.Framework.pdb

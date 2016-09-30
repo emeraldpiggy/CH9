@@ -1,0 +1,30 @@
+<ResourceDictionary
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="http://schemas.telerik.com/2008/xaml/compile"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="c"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/System.Windows.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.ScheduleView.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.RibbonView.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.Navigation.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.Input.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.GridView.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.GanttView.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.Diagrams.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.Diagrams.Extensions.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.Pivot.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.PivotFieldList.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.DataVisualization.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.Data.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.Docking.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.Expressions.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.Chart.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Controls.Charting.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Documents.xaml"/>
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows8;component/themes/Telerik.Windows.Cloud.Controls.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

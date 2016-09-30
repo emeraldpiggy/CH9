@@ -1,0 +1,14 @@
+C:\App\CH9\CH9\bin\Debug\CH9.exe.config
+C:\App\CH9\CH9\bin\Debug\CH9.exe
+C:\App\CH9\CH9\bin\Debug\CH9.pdb
+C:\App\CH9\CH9\obj\Debug\CH9.Main.csprojResolveAssemblyReference.cache
+C:\App\CH9\CH9\obj\Debug\MainWindow.g.cs
+C:\App\CH9\CH9\obj\Debug\App.g.cs
+C:\App\CH9\CH9\obj\Debug\CH9_MarkupCompile.cache
+C:\App\CH9\CH9\obj\Debug\CH9_MarkupCompile.lref
+C:\App\CH9\CH9\obj\Debug\MainWindow.baml
+C:\App\CH9\CH9\obj\Debug\CH9.g.resources
+C:\App\CH9\CH9\obj\Debug\CH9.Properties.Resources.resources
+C:\App\CH9\CH9\obj\Debug\CH9.Main.csproj.GenerateResource.Cache
+C:\App\CH9\CH9\obj\Debug\CH9.exe
+C:\App\CH9\CH9\obj\Debug\CH9.pdb

@@ -1,0 +1,5 @@
+C:\App\CH9\CH9.Framework\bin\Debug\CH9.Framework.dll
+C:\App\CH9\CH9.Framework\bin\Debug\CH9.Framework.pdb
+C:\App\CH9\CH9.Framework\obj\Debug\CH9.Framework.csprojResolveAssemblyReference.cache
+C:\App\CH9\CH9.Framework\obj\Debug\CH9.Framework.dll
+C:\App\CH9\CH9.Framework\obj\Debug\CH9.Framework.pdb

@@ -1,0 +1,5 @@
+C:\App\CH9\CH9.IOC\bin\Debug\CH9.IOC.dll
+C:\App\CH9\CH9.IOC\bin\Debug\CH9.IOC.pdb
+C:\App\CH9\CH9.IOC\obj\Debug\CH9.IOC.csprojResolveAssemblyReference.cache
+C:\App\CH9\CH9.IOC\obj\Debug\CH9.IOC.dll
+C:\App\CH9\CH9.IOC\obj\Debug\CH9.IOC.pdb

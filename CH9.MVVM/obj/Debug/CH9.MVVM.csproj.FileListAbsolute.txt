@@ -1,0 +1,5 @@
+C:\App\CH9\CH9.MVVM\bin\Debug\CH9.MVVM.dll
+C:\App\CH9\CH9.MVVM\bin\Debug\CH9.MVVM.pdb
+C:\App\CH9\CH9.MVVM\obj\Debug\CH9.MVVM.csprojResolveAssemblyReference.cache
+C:\App\CH9\CH9.MVVM\obj\Debug\CH9.MVVM.dll
+C:\App\CH9\CH9.MVVM\obj\Debug\CH9.MVVM.pdb
