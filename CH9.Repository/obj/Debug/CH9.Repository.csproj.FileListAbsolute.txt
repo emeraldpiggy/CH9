@@ -1,0 +1,12 @@
+G:\Documents\GitHub\CH9\CH9.Repository\bin\Debug\CH9.Repository.dll.config
+G:\Documents\GitHub\CH9\CH9.Repository\bin\Debug\CH9.Repository.dll
+G:\Documents\GitHub\CH9\CH9.Repository\bin\Debug\CH9.Repository.pdb
+G:\Documents\GitHub\CH9\CH9.Repository\bin\Debug\EntityFramework.dll
+G:\Documents\GitHub\CH9\CH9.Repository\bin\Debug\EntityFramework.SqlServer.dll
+G:\Documents\GitHub\CH9\CH9.Repository\bin\Debug\Newtonsoft.Json.dll
+G:\Documents\GitHub\CH9\CH9.Repository\bin\Debug\EntityFramework.xml
+G:\Documents\GitHub\CH9\CH9.Repository\bin\Debug\EntityFramework.SqlServer.xml
+G:\Documents\GitHub\CH9\CH9.Repository\bin\Debug\Newtonsoft.Json.xml
+G:\Documents\GitHub\CH9\CH9.Repository\obj\Debug\CH9.Repository.csprojResolveAssemblyReference.cache
+G:\Documents\GitHub\CH9\CH9.Repository\obj\Debug\CH9.Repository.dll
+G:\Documents\GitHub\CH9\CH9.Repository\obj\Debug\CH9.Repository.pdb

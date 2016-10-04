@@ -1,0 +1,5 @@
+G:\Documents\GitHub\CH9\Cleaning\bin\Debug\Cleaning.dll
+G:\Documents\GitHub\CH9\Cleaning\bin\Debug\Cleaning.pdb
+G:\Documents\GitHub\CH9\Cleaning\obj\Debug\Cleaning.View.csprojResolveAssemblyReference.cache
+G:\Documents\GitHub\CH9\Cleaning\obj\Debug\Cleaning.dll
+G:\Documents\GitHub\CH9\Cleaning\obj\Debug\Cleaning.pdb
