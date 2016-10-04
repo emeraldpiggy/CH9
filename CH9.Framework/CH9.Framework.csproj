@@ -52,7 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Logging\ILog.cs" />
+    <Compile Include="Logging\Log4Net.cs" />
+    <Compile Include="Logging\LogFacade.cs" />
+    <Compile Include="Logging\LogLevel.cs" />
+    <Compile Include="Logging\CH9LogManager.cs" />
+    <Compile Include="Logging\Nlog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
