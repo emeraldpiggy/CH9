@@ -9,7 +9,7 @@ using LogManager = Caliburn.Micro.LogManager;
 namespace CH9.MVVM
 {
 
-    public abstract class BaseBootStrapper : Bootstrapper
+    public abstract class BaseBootStrapper : BootstrapperBase
     {
         private readonly bool _useApplication;
         private Container _container;
@@ -25,7 +25,6 @@ namespace CH9.MVVM
         protected override void Configure()
         {
             ViewResolver.Initialise();
-
 
             try
             {
