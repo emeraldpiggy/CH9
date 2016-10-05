@@ -1,5 +1,0 @@
-C:\App\CH9\Cleaning\bin\Debug\Cleaning.dll
-C:\App\CH9\Cleaning\bin\Debug\Cleaning.pdb
-C:\App\CH9\Cleaning\obj\Debug\Cleaning.csprojResolveAssemblyReference.cache
-C:\App\CH9\Cleaning\obj\Debug\Cleaning.dll
-C:\App\CH9\Cleaning\obj\Debug\Cleaning.pdb
