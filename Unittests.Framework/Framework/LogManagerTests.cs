@@ -1,6 +1,4 @@
 ﻿using System.IO;
-using System.Net.Mime;
-using System.Reflection;
 using CH9.Framework.Logging;
 using NUnit.Framework;
 
