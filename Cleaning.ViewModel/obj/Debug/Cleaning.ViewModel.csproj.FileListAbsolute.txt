@@ -1,5 +1,0 @@
-G:\Documents\GitHub\CH9\Cleaning.ViewModel\bin\Debug\Cleaning.ViewModel.dll
-G:\Documents\GitHub\CH9\Cleaning.ViewModel\bin\Debug\Cleaning.ViewModel.pdb
-G:\Documents\GitHub\CH9\Cleaning.ViewModel\obj\Debug\Cleaning.ViewModel.csprojResolveAssemblyReference.cache
-G:\Documents\GitHub\CH9\Cleaning.ViewModel\obj\Debug\Cleaning.ViewModel.dll
-G:\Documents\GitHub\CH9\Cleaning.ViewModel\obj\Debug\Cleaning.ViewModel.pdb
