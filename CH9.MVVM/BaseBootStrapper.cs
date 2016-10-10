@@ -26,6 +26,7 @@ namespace CH9.MVVM
         {
             ViewResolver.Initialise();
 
+
             try
             {
                 _container = SimpleInjectorContainerFactory.CreateProcessScopedContainer();
