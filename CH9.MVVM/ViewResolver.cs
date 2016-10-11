@@ -49,7 +49,7 @@ namespace CH9.MVVM
 
             _uiAutomationIDSupport = true;
         }
-        public static IViewResolver View
+    class ViewResolver
         {
             get
             {
@@ -170,6 +170,27 @@ namespace CH9.MVVM
 
     public interface IVisualState : INotifyPropertyChanged
     {
-        string VisualState { get; set; }
+
+        public static void Initialise()
+        {
+            ViewLocator.NameTransformer.AddRule
+              (
+                  @"(?<nsbefore>([A-Za-z_]\w*\.)*)?(?<nsvm>ViewModels\.)(?<nsafter>[A-Za-z_]\w*\.)*(?<basename>[A-Za-z_]\w*)(?<suffix>ViewModel$)",
+                  @"${nsbefore}Views.PropertyEditors.${nsafter}${basename}View",
+                  @"(([A-Za-z_]\w*\.)*)?ViewModels\.([A-Za-z_]\w*\.)*[A-Za-z_]\w*ViewModel$"
+              );
+
+            ViewLocator.NameTransformer.AddRule
+                (
+                    @"(?<nsbefore>([A-Za-z_]\w*\.)*)?(?<nsvm>ViewModels\.)(?<nsafter>[A-Za-z_]\w*\.)*(?<basename>[A-Za-z_]\w*)(?<suffix>ViewModel$)",
+                    @"${nsbefore}Views.PropertyEditors.${basename}View",
+                    @"(([A-Za-z_]\w*\.)*)?ViewModels\.([A-Za-z_]\w*\.)*[A-Za-z_]\w*ViewModel$"
+                );
+        }
+
+        public static IViewResolver View => new ViewResolver();
+    }
+
+    {
     }
 }
