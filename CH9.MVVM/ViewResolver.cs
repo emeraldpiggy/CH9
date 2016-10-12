@@ -1,27 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Forms.Integration;
 using Caliburn.Micro;
+using CaliburnIoC = Caliburn.Micro.IoC;
 
 namespace CH9.MVVM
 {
     public class ViewResolver : IViewResolver
     {
-        private static bool _uiAutomationIDSupport;
+        internal static bool UiAutomationIdSupport;
 
         public static void Initialise()
         {
             ViewLocator.ContextSeparator = string.Empty;
 
-            //Add transform rules for ViewModel - PropertyEditor\{base}Property
             ViewLocator.NameTransformer.AddRule
                 (
                     @"(?<nsbefore>([A-Za-z_]\w*\.)*)?(?<nsvm>ViewModels\.)(?<nsafter>[A-Za-z_]\w*\.)*(?<basename>[A-Za-z_]\w*)(?<suffix>ViewModel$)",
@@ -36,25 +33,14 @@ namespace CH9.MVVM
                     @"(([A-Za-z_]\w*\.)*)?ViewModels\.([A-Za-z_]\w*\.)*[A-Za-z_]\w*ViewModel$"
                 );
 
-            //Add convention transform rules for EditorModel - Editor
-            ViewLocator.NameTransformer.AddRule(
-                    @"(?<nsbefore>([A-Za-z_]\w*\.)*)(?<subns>ViewModels.EditorModels\.)(?<nsafter>([A-Za-z_]\w*\.)*)(?<basename>[A-Za-z_]\w*)(?<suffix>EditorModel)$",
-                    @"${nsbefore}Views.Editors.${nsafter}${basename}Editor"
-                );
-
-            ViewLocator.NameTransformer.AddRule(
-                    @"(?<origns>\.)(?<basename>[A-Za-z_]\w*)(?<suffix>EditorModel)$",
-                    @".${basename}Editor"
-                );
-
-            _uiAutomationIDSupport = true;
+            UiAutomationIdSupport = true;
         }
-    class ViewResolver
+
+        public ViewResolver GetViewResolver => new ViewResolver();
+
+        internal static UIElement LocateForModel(object model, DependencyObject displayLocation, object context)
         {
-            get
-            {
-                return new ViewResolver();
-            }
+            return LocateForModelType(model.GetType(), model, context);
         }
 
         internal static UIElement LocateForModelType(Type modelType, object model, object context)
@@ -87,16 +73,6 @@ namespace CH9.MVVM
 
 
                 DockPanel.SetDock(host, Dock.Top);
-                var dataResource = new DataResource { BindingTarget = new Binding() };
-                host.Resources.Add("WndFormBindingResource", dataResource);
-                if (localCtrl is IDataContext)
-                {
-                    var drBinding = new DataResourceBindingExtension();
-                    drBinding.DataResource = dataResource;
-                    var drBindingHelper = new WindowFormsDataResouceBindingHelper(localCtrl);
-                    drBinding.ProvideValue(drBindingHelper);
-                    ((IDataContext)localCtrl).DataContext = model;
-                }
                 host.Child = localCtrl;
                 ViewLocator.InitializeComponent(localCtrl);
                 dockPanel.Children.Add(host);
@@ -165,34 +141,5 @@ namespace CH9.MVVM
                 BindingOperations.SetBinding(view, AutomationProperties.AutomationIdProperty, new Binding("Title") { Source = value, Mode = BindingMode.OneWay });
             }
         }
-    }
-
-
-    public interface IVisualState : INotifyPropertyChanged
-    {
-
-        public static void Initialise()
-        {
-            ViewLocator.NameTransformer.AddRule
-              (
-                  @"(?<nsbefore>([A-Za-z_]\w*\.)*)?(?<nsvm>ViewModels\.)(?<nsafter>[A-Za-z_]\w*\.)*(?<basename>[A-Za-z_]\w*)(?<suffix>ViewModel$)",
-                  @"${nsbefore}Views.PropertyEditors.${nsafter}${basename}View",
-                  @"(([A-Za-z_]\w*\.)*)?ViewModels\.([A-Za-z_]\w*\.)*[A-Za-z_]\w*ViewModel$"
-              );
-
-            ViewLocator.NameTransformer.AddRule
-                (
-                    @"(?<nsbefore>([A-Za-z_]\w*\.)*)?(?<nsvm>ViewModels\.)(?<nsafter>[A-Za-z_]\w*\.)*(?<basename>[A-Za-z_]\w*)(?<suffix>ViewModel$)",
-                    @"${nsbefore}Views.PropertyEditors.${basename}View",
-                    @"(([A-Za-z_]\w*\.)*)?ViewModels\.([A-Za-z_]\w*\.)*[A-Za-z_]\w*ViewModel$"
-                );
-        }
-
-        public static IViewResolver View => new ViewResolver();
-    }
-
-    public interface IViewResolver
-    {
-
     }
 }

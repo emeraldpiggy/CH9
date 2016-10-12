@@ -20,7 +20,7 @@ namespace CH9.MVVM
             get { return _container; }
             set
             {
-                if (_container != value)
+                if (!Equals(_container, value))
                 {
                     _container = value;
                 }
