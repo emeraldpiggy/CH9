@@ -1,20 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
+using System.Threading;
 using System.Windows;
 using Caliburn.Micro;
+using CH9.Framework.Logging;
+using CH9.IOC;
 using SimpleInjector;
-using LogManager = Caliburn.Micro.LogManager;
 
 namespace CH9.MVVM
 {
+    internal class Root
+    {
+        private static Container _container;
+
+        public static Container Container
+        {
+            get { return _container; }
+            set
+            {
+                if (_container != value)
+                {
+                    _container = value;
+                }
+            }
+        }
+    }
 
     public abstract class BaseBootStrapper : BootstrapperBase
     {
         private readonly bool _useApplication;
         private Container _container;
 
-        internal Container Container { get { return _container; } }
+        internal Container Container => _container;
         public event EventHandler<EventArgs> Loaded;
 
         protected BaseBootStrapper(bool useApplication)
@@ -26,21 +45,19 @@ namespace CH9.MVVM
         {
             ViewResolver.Initialise();
 
-
             try
             {
-                _container = SimpleInjectorContainerFactory.CreateProcessScopedContainer();
+                _container = SimpleInjectorContainerFactory.CreateProcessScopedContainer(new DefaultEmptyContainerInitialiser());
             }
             catch (Exception ex)
             {
-                this.LogFatal(ex);
+                Ch9LogManager.Log(GetType(), LogLevel.Debug, ex.ToString());
                 throw;
             }
 
             Root.Container = _container;
-            _container.RegisterSingle<IWindowManager>(new CaliburnWindowManager());
+            _container.RegisterSingleton<IWindowManager>(new WindowManagerBase());
 
-            this.LogDebug("Finished Configuring container");
 
             //when loaded in vsis there is a null instance in the assembly source this must be removed, most like due to the process not being a .net exe
             if (AssemblySource.Instance.Any(a => a == null))
@@ -56,16 +73,11 @@ namespace CH9.MVVM
             {
                 InitializeShell();
             }
-
-            LogManager.GetLog = t => new CaliburnLog();
-
-            LoadingMessage(string.Format("{0}", "Configure Complete"));
-
         }
 
         protected void InitializeShell()
         {
-            foreach (var shellInit in GetAllInstances(typeof(IShellInitialise)).AsNullSafe().OfType<IShellInitialise>())
+            foreach (var shellInit in GetAllInstances(typeof(IShellInitialise)).OfType<IShellInitialise>())
             {
                 shellInit.Initialise(Container);
             }
@@ -102,13 +114,8 @@ namespace CH9.MVVM
         {
             OnLoaded(Container);
             var handler = Loaded;
-            if (handler != null)
-            {
-                handler(this, EventArgs.Empty);
-            }
+            handler?.Invoke(this, EventArgs.Empty);
         }
-
-
 
         protected override void OnExit(object sender, EventArgs e)
         {
@@ -146,10 +153,8 @@ namespace CH9.MVVM
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            LoadingMessage("Loading Shell");
             if (Container == null)
             {
-                this.LogFatal("Error Container has not been configured!");
                 return;
             }
 
@@ -173,5 +178,31 @@ namespace CH9.MVVM
             }
         }
     }
-}
+
+
+    public interface IShell
+    {
+        string DisplayName { get; set; }
+    }
+
+
+
+    internal class ShellInitialise : IShellInitialise
+    {
+        #region Implementation of IShellInitialise
+
+        public void Initialise(Container container)
+        {
+            var identidy = WindowsIdentity.GetCurrent();
+            Thread.CurrentPrincipal = new GenericPrincipal(identidy, null);
+            AppDomain.CurrentDomain.SetThreadPrincipal(Thread.CurrentPrincipal);
+        }
+        #endregion
+    }
+
+
+    public interface IShellInitialise
+    {
+        void Initialise(Container container);
+    }
 }

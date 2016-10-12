@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using Caliburn.Micro;
 using Telerik.Windows.Controls;
 
@@ -13,7 +12,7 @@ namespace CH9.MVVM
     {
         public static void Configure()
         {
-            ConventionManager.AddElementConvention<RadTabControl>(RadTabControl.ItemsSourceProperty,
+            ConventionManager.AddElementConvention<RadTabControl>(ItemsControl.ItemsSourceProperty,
                                                                   "ItemsSource",
                                                                   "SelectionChanged")
                 .ApplyBinding = (viewModelType, path, property, element, convention) =>
@@ -23,7 +22,7 @@ namespace CH9.MVVM
                                                                                     property,
                                                                                     element,
                                                                                     convention,
-                                                                                    RadTabControl.ItemsSourceProperty))
+                                                                                    ItemsControl.ItemsSourceProperty))
                         return false;
 
                     var tabControl = (RadTabControl)element;
@@ -36,21 +35,20 @@ namespace CH9.MVVM
                             tabControl.ContentTemplate = ConventionManager.DefaultItemTemplate;
                     }
                     ConventionManager.ConfigureSelectedItem(element,
-                                                            RadTabControl.SelectedItemProperty,
+                                                            Selector.SelectedItemProperty,
                                                             viewModelType,
                                                             path);
 
                     if (string.IsNullOrEmpty(tabControl.DisplayMemberPath))
                         ConventionManager.ApplyHeaderTemplate(tabControl,
-                                                              RadTabControl.ItemTemplateProperty,
-                                                              RadTabControl.ItemTemplateSelectorProperty,
+                                                              ItemsControl.ItemTemplateProperty,
+                                                              ItemsControl.ItemTemplateSelectorProperty,
                                                               viewModelType);
                     return true;
                 };
 
-            ConventionManager.AddElementConvention<RadMenuItem>(RadMenuItem.ItemsSourceProperty, "DataContext", "Click");
+            ConventionManager.AddElementConvention<RadMenuItem>(ItemsControl.ItemsSourceProperty, "DataContext", "Click");
             ConventionManager.AddElementConvention<RadBusyIndicator>(RadBusyIndicator.IsBusyProperty, "IsBusy", "Loaded");
-            ConventionManager.AddElementConvention<RadMaskedTextBox>(RadMaskedTextBox.MaskedTextProperty, "MaskedText", "ValueChanged");
             ConventionManager.AddElementConvention<RadMaskedTextInput>(RadMaskedTextInput.ValueProperty, "Value", "ValueChanged");
             ConventionManager.AddElementConvention<RadMaskedCurrencyInput>(RadMaskedCurrencyInput.ValueProperty, "Value", "ValueChanged");
             ConventionManager.AddElementConvention<RadMaskedDateTimeInput>(RadMaskedDateTimeInput.ValueProperty, "Value", "ValueChanged");

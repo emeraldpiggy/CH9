@@ -1,12 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Mime;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Navigation;
 using Caliburn.Micro;
 using Telerik.Windows.Controls;
 
 namespace CH9.MVVM
 {
-    public class WindowManager : WindowManager
+    public interface IWindowManagerService
+    {
+        void ShowWindow(object rootModel, object context = null, IDictionary<string, object> settings = null);
+    }
+
+    public class WindowManagerBase : WindowManager, IWindowManagerService
     {
         public override bool? ShowDialog(object rootModel, object context = null, IDictionary<string, object> settings = null)
         {
@@ -30,9 +39,9 @@ namespace CH9.MVVM
             {
                 NavigationWindow navWindow = null;
 
-                if (MediaTypeNames.Application.Current != null && MediaTypeNames.Application.Current.MainWindow != null)
+                if (Application.Current != null && Application.Current.MainWindow != null)
                 {
-                    navWindow = MediaTypeNames.Application.Current.MainWindow as NavigationWindow;
+                    navWindow = Application.Current.MainWindow as NavigationWindow;
                 }
 
                 if (navWindow != null)
@@ -67,13 +76,10 @@ namespace CH9.MVVM
             if (haveDisplayName != null && !ConventionManager.HasBinding(view, RadWindow.HeaderProperty))
             {
                 var binding = new Binding("DisplayName") { Mode = BindingMode.TwoWay };
-                view.SetBinding(RadWindow.HeaderProperty, binding);
+                view.SetBinding(HeaderedContentControl.HeaderProperty, binding);
             }
 
             ApplyRadWindowSettings(view, settings);
-
-            new RadWindowConductor(rootModel, view);
-
             return view;
         }
 
@@ -87,10 +93,7 @@ namespace CH9.MVVM
                 {
                     var propertyInfo = type.GetProperty(pair.Key);
 
-                    if (propertyInfo != null)
-                    {
-                        propertyInfo.SetValue(target, pair.Value, null);
-                    }
+                    propertyInfo?.SetValue(target, pair.Value, null);
                 }
 
                 return true;
@@ -114,7 +117,7 @@ namespace CH9.MVVM
             {
                 var contentElement = view as FrameworkElement;
                 if (contentElement == null)
-                    throw new ArgumentNullException("view");
+                    throw new ArgumentNullException(nameof(view));
 
                 window = new RadWindow
                 {
@@ -184,16 +187,16 @@ namespace CH9.MVVM
         /// <returns>The owner.</returns>
         protected virtual Window GetActiveWindow()
         {
-            if (MediaTypeNames.Application.Current == null)
+            if (Application.Current == null)
             {
                 return null;
             }
 
-            var active = MediaTypeNames.Application.Current
+            var active = Application.Current
                 .Windows.OfType<Window>()
                 .FirstOrDefault(x => x.IsActive);
 
-            return active ?? MediaTypeNames.Application.Current.MainWindow;
+            return active ?? Application.Current.MainWindow;
         }
 
         public static void Alert(string title, string message)
@@ -222,8 +225,7 @@ namespace CH9.MVVM
                     return;
                 }
 
-                if (onCancel != null)
-                    onCancel();
+                onCancel?.Invoke();
             };
             Confirm(dialogParameters);
         }

@@ -31,6 +31,8 @@ namespace CH9.MVVM
         public static IViewResolver View => new ViewResolver();
     }
 
+    public interface IViewResolver
     {
+
     }
 }

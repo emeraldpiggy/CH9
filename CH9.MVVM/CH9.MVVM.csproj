@@ -50,16 +50,20 @@
       <HintPath>..\packages\NLog.4.3.9\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="SimpleInjector, Version=3.2.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleInjector.3.2.2\lib\net45\SimpleInjector.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.3.0.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -98,10 +102,12 @@
       <HintPath>..\lib\RCWPF\2016.2.613.45.NoXaml\Telerik.Windows.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBootStrapper.cs" />
     <Compile Include="CaliburnLog.cs" />
+    <Compile Include="RadWindowConductor.cs" />
     <Compile Include="ViewResolver.cs" />
     <Compile Include="WindowConvention.cs" />
     <Compile Include="WindowManager.cs" />
@@ -118,6 +124,10 @@
     <ProjectReference Include="..\CH9.Framework\CH9.Framework.csproj">
       <Project>{da39ac56-f7c7-4ee4-88a8-00c74e09389f}</Project>
       <Name>CH9.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CH9.IOC\CH9.IOC.csproj">
+      <Project>{872AC24A-05FF-4B9B-9A59-D1DA10F87E68}</Project>
+      <Name>CH9.IOC</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

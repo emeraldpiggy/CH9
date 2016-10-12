@@ -11,7 +11,7 @@ namespace CH9.MVVM
         /// </summary>
         public static void Alert(this IWindowManager windowManager, string title, string message)
         {
-            TelerikWindowManager.Alert(title, message);
+            WindowManagerBase.Alert(title, message);
         }
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace CH9.MVVM
         /// </summary>
         public static void Alert(this IWindowManager windowManager, DialogParameters dialogParameters)
         {
-            TelerikWindowManager.Alert(dialogParameters);
+            WindowManagerBase.Alert(dialogParameters);
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace CH9.MVVM
         /// </summary>
         public static void Confirm(this IWindowManager windowManager, string title, string message, System.Action onOK, System.Action onCancel = null)
         {
-            TelerikWindowManager.Confirm(title, message, onOK, onCancel);
+            WindowManagerBase.Confirm(title, message, onOK, onCancel);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace CH9.MVVM
         /// </summary>
         public static void Confirm(this IWindowManager windowManager, DialogParameters dialogParameters)
         {
-            TelerikWindowManager.Confirm(dialogParameters);
+            WindowManagerBase.Confirm(dialogParameters);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace CH9.MVVM
         /// </summary>
         public static void Prompt(this IWindowManager windowManager, string title, string message, string defaultPromptResultValue, Action<string> onOK)
         {
-            TelerikWindowManager.Prompt(title, message, defaultPromptResultValue, onOK);
+            WindowManagerBase.Prompt(title, message, defaultPromptResultValue, onOK);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace CH9.MVVM
         /// </summary>
         public static void Prompt(this IWindowManager windowManager, DialogParameters dialogParameters)
         {
-            TelerikWindowManager.Prompt(dialogParameters);
+            WindowManagerBase.Prompt(dialogParameters);
         }
     }
 }
