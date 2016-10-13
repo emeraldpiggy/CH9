@@ -1,9 +1,7 @@
 ﻿<Application x:Class="CH9.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:CH9"
-             StartupUri="MainWindow.xaml">
+             StartupUri="CH9Main.xaml">
     <Application.Resources>
-         
     </Application.Resources>
 </Application>

@@ -83,7 +83,7 @@ namespace CH9.MVVM
 
                 if (viewType == null)
                 {
-                    return new TextBlock { Text = string.Format("{0} not found.", viewTypeName) };
+                    return new TextBlock { Text = $"{viewTypeName} not found."};
                 }
 
                 view = ViewLocator.GetOrCreateViewType(viewType);

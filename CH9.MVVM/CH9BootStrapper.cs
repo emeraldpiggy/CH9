@@ -11,7 +11,7 @@ using SimpleInjector;
 
 namespace CH9.MVVM
 {
-    internal class Root
+    public class Root
     {
         private static Container _container;
 
@@ -28,7 +28,7 @@ namespace CH9.MVVM
         }
     }
 
-    public abstract class BaseBootStrapper : BootstrapperBase
+    public class Ch9BootStrapper : BootstrapperBase
     {
         private readonly bool _useApplication;
         private Container _container;
@@ -36,7 +36,7 @@ namespace CH9.MVVM
         internal Container Container => _container;
         public event EventHandler<EventArgs> Loaded;
 
-        protected BaseBootStrapper(bool useApplication)
+        public Ch9BootStrapper(bool useApplication)
             : base(useApplication)
         {
             _useApplication = useApplication;
@@ -134,7 +134,7 @@ namespace CH9.MVVM
     }
 
 
-    public class ContainerBootStrapper : BaseBootStrapper
+    public class ContainerBootStrapper : Ch9BootStrapper
     {
         private readonly bool _launchIShell;
 
@@ -145,6 +145,11 @@ namespace CH9.MVVM
             containerConfigured(Container);
         }
 
+        public ContainerBootStrapper()
+            : base(true)
+        {
+            _launchIShell = true;
+        }
         public ContainerBootStrapper(bool launchIShell, bool useApplication = true)
             : base(useApplication)
         {
