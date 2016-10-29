@@ -112,6 +112,7 @@
     <Compile Include="IViewResolver.cs" />
     <Compile Include="IVisualState.cs" />
     <Compile Include="RadWindowConductor.cs" />
+    <Compile Include="ViewModelDisposableBase.cs" />
     <Compile Include="ViewResolver.cs" />
     <Compile Include="WindowConvention.cs" />
     <Compile Include="WindowManager.cs" />

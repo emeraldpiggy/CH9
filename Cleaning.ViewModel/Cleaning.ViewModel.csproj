@@ -43,6 +43,12 @@
     <Compile Include="CleanHouseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CH9.MVVM\CH9.MVVM.csproj">
+      <Project>{9903F924-DFBA-4790-AFFA-36FCCA458B85}</Project>
+      <Name>CH9.MVVM</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -53,6 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\CleaningHouseModel.cs" />
+    <Compile Include="Entity\EntityBase.cs" />
+    <Compile Include="Entity\EntityStatus.cs" />
+    <Compile Include="Entity\IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

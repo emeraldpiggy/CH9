@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logging\FrameworkHelper.cs" />
     <Compile Include="Logging\ILog.cs" />
     <Compile Include="Logging\Log4Net.cs" />
     <Compile Include="Logging\LogFacade.cs" />
