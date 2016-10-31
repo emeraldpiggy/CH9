@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SimpleInjector;
 using Container = SimpleInjector.Container;
 
 namespace CH9.IOC
@@ -37,7 +32,6 @@ namespace CH9.IOC
     {
         public void ConfigureContainerRegistrations(Container container, RegistrationFilter registrationFilter)
         {
-
         }
     }
 }

@@ -20,7 +20,7 @@
         </Grid.ColumnDefinitions>
         
         <controls:RadTextBlock Grid.Row="0" Grid.Column="0">
-            <Run Text="Dusting" />
+            <Run Text="{Binding Dusting}" />
         </controls:RadTextBlock>
         <telerik:RadButton Content ="{Binding Dusting}" Grid.Row="0" Grid.Column="1"/>
         <controls:RadTextBlock Grid.Row="1" Grid.Column="0">

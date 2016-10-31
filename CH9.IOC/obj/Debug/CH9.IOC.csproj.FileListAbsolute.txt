@@ -12,3 +12,5 @@ G:\Documents\GitHub\CH9\CH9.IOC\obj\Debug\CH9.IOC.dll
 G:\Documents\GitHub\CH9\CH9.IOC\obj\Debug\CH9.IOC.pdb
 C:\App\CH9\CH9.IOC\bin\Debug\SimpleInjector.dll
 C:\App\CH9\CH9.IOC\bin\Debug\SimpleInjector.xml
+C:\App\CH9\Debug\CH9.IOC.dll
+C:\App\CH9\Debug\CH9.IOC.pdb

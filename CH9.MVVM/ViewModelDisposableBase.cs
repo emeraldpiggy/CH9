@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CH9.Framework.Logging;
+using System.Runtime.CompilerServices;
+using CH9.Framework;
+using CH9.MVVM.Annotations;
+
 
 namespace CH9.MVVM
 {
-    public abstract class ViewModelDisposableBase<T>:IDisposable
+    public abstract class ViewModelDisposableBase<T>:IViewModel<T>,IDisposable
     {
-        protected T Model { get; set; }
-        private readonly IEnumerable<IDisposable> _disposables;
+        public T Model { get; set; }
+        private readonly IEnumerable<IDisposable> _disposables; 
 
         protected ViewModelDisposableBase()
         {
@@ -66,5 +66,12 @@ namespace CH9.MVVM
             GC.SuppressFinalize(this);
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{0AB6F3CF-10BE-49EE-B878-A2A9C945F1FE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NotificationService</RootNamespace>
-    <AssemblyName>NotificationService</AssemblyName>
+    <RootNamespace>CH9.NotificationService</RootNamespace>
+    <AssemblyName>CH9.NotificationService</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

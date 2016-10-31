@@ -36,49 +36,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Caliburn.Micro.Platform">
+    <Reference Include="Caliburn.Micro.Platform, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.3.0.1\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Caliburn.Micro.Platform.Core">
-      <HintPath>..\packages\Caliburn.Micro.3.0.1\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\packages\NLog.4.3.9\lib\net45\NLog.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Data">
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System.Core">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Net.Http">
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="Telerik.Windows.Controls, Version=2016.2.613.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\RCWPF\2016.2.613.45.NoXaml\Telerik.Windows.Controls.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase">
       <Private>False</Private>
@@ -101,10 +74,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ch9Main.xaml.cs">
-      <DependentUpon>Ch9Main.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Ch9MainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -132,15 +101,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Ch9Main.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\CH9.MVVM\CH9.MVVM.csproj">
       <Project>{9903F924-DFBA-4790-AFFA-36FCCA458B85}</Project>
       <Name>CH9.MVVM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cleaning.ViewModel\Cleaning.ViewModel.csproj">
+      <Project>{CE013234-651B-4C8D-B9D2-D68A5EE1272A}</Project>
+      <Name>Cleaning.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cleaning\Cleaning.View.csproj">
+      <Project>{F6056645-01AD-4A1A-B795-393633C4E76C}</Project>
+      <Name>Cleaning.View</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

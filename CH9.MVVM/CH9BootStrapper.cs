@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Security.Principal;
 using System.Threading;
 using System.Windows;
 using Caliburn.Micro;
 using CH9.Framework.Logging;
 using CH9.IOC;
+using CH9.MVVM.Shell;
 using SimpleInjector;
+using Telerik.Windows.Controls;
 
 namespace CH9.MVVM
 {
@@ -32,18 +36,27 @@ namespace CH9.MVVM
     {
         private readonly bool _useApplication;
         private Container _container;
+        private readonly bool _launchIShell;
 
         internal Container Container => _container;
         public event EventHandler<EventArgs> Loaded;
 
+        public Ch9BootStrapper()
+        {
+            _useApplication = true;
+            _launchIShell = true;
+            Initialize();
+        }
+
         public Ch9BootStrapper(bool useApplication)
-            : base(useApplication)
+                : base(useApplication)
         {
             _useApplication = useApplication;
         }
+
         protected override void Configure()
         {
-            ViewResolver.Initialise();
+            //ViewResolver.Initialise();
 
             try
             {
@@ -56,7 +69,8 @@ namespace CH9.MVVM
             }
 
             Root.Container = _container;
-            _container.RegisterSingleton<IWindowManager>(new WindowManagerBase());
+            RegisterInstance();
+
 
 
             //when loaded in vsis there is a null instance in the assembly source this must be removed, most like due to the process not being a .net exe
@@ -73,6 +87,45 @@ namespace CH9.MVVM
             {
                 InitializeShell();
             }
+        }
+
+        private void RegisterInstance()
+        {
+            _container.RegisterSingleton<IWindowManager>(new WindowManagerBase());
+            _container.Register<IShell, ShellViewModel>();
+            _container.Register<IWindowManagerService, WindowManagerBase>(Lifestyle.Transient);
+            _container.Register<IShellInitialise, ShellInitialise>(Lifestyle.Transient);
+            _container.RegisterCollection<IShellInitialise>();
+            _container.Register(typeof(IViewModel<>), new[] { typeof(ViewModelDisposableBase<>).Assembly }, Lifestyle.Transient);
+
+
+            var allAssemblies = GetAllAssemblies();
+
+            foreach (var allAssembly in allAssemblies)
+            {
+                var registrations = allAssembly.GetExportedTypes()
+                    .Where(t => t.Namespace != null && t.Namespace.StartsWith("CH9") && !t.Namespace.Contains("CH9.MVVM")
+                    && !t.Namespace.Contains("CH9.IOC") && !t.Namespace.Contains("CH9.Repository")
+                    && t.IsClass && !t.IsGenericType && t.GetInterfaces().Any())
+                    .Select(type => new {Service = type.GetInterfaces().First(), Implementation = type}).ToArray();
+
+                foreach (var reg in registrations)
+                {
+                    _container.Register(reg.Service, reg.Implementation, Lifestyle.Transient);
+                }
+            }
+        }
+
+        private static List<Assembly> GetAllAssemblies()
+        {
+            List<Assembly> allAssemblies = new List<Assembly>();
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            foreach (string dll in Directory.GetFiles(path, "CH9*.dll"))
+            {
+                allAssemblies.Add(Assembly.LoadFile(dll));
+            }
+            return allAssemblies;
         }
 
         protected void InitializeShell()
@@ -131,30 +184,6 @@ namespace CH9.MVVM
         {
             return _container.GetAllInstances(serviceType);
         }
-    }
-
-
-    public class ContainerBootStrapper : Ch9BootStrapper
-    {
-        private readonly bool _launchIShell;
-
-        public ContainerBootStrapper(bool launchIShell, bool useApplication, Action<Container> containerConfigured, Action<Container> completeAction)
-            : this(launchIShell, useApplication)
-        {
-            Loaded += (o, e) => completeAction(Container);
-            containerConfigured(Container);
-        }
-
-        public ContainerBootStrapper()
-            : base(true)
-        {
-            _launchIShell = true;
-        }
-        public ContainerBootStrapper(bool launchIShell, bool useApplication = true)
-            : base(useApplication)
-        {
-            _launchIShell = launchIShell;
-        }
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
@@ -183,14 +212,6 @@ namespace CH9.MVVM
             }
         }
     }
-
-
-    public interface IShell
-    {
-        string DisplayName { get; set; }
-    }
-
-
 
     internal class ShellInitialise : IShellInitialise
     {

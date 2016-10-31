@@ -7,8 +7,8 @@
     <ProjectGuid>{CE013234-651B-4C8D-B9D2-D68A5EE1272A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cleaning.ViewModel</RootNamespace>
-    <AssemblyName>Cleaning.ViewModel</AssemblyName>
+    <RootNamespace>CH9.Cleaning.ViewModel</RootNamespace>
+    <AssemblyName>CH9.Cleaning.ViewModel</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,13 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CleanHouseViewModel.cs" />
+    <Compile Include="CleaningHouseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CH9.MVVM\CH9.MVVM.csproj">
       <Project>{9903F924-DFBA-4790-AFFA-36FCCA458B85}</Project>
       <Name>CH9.MVVM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CH9.Repository\CH9.Repository.csproj">
+      <Project>{05AB6158-CEED-4E2B-B03E-04F5E0E88BAD}</Project>
+      <Name>CH9.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

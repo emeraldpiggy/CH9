@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CH9.Framework.Logging
+namespace CH9.Framework
 {
     public static class FrameworkHelper
     {
@@ -64,6 +64,11 @@ namespace CH9.Framework.Logging
             {
                 disposable = null;
             }
+        }
+
+        public static bool AreEqual<T>(this T reference, T value)
+        {
+            return EqualityComparer<T>.Default.Equals(reference, value);
         }
     }
 }
