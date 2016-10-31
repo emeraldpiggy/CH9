@@ -113,8 +113,6 @@
     <Compile Include="IVisualState.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="RadWindowConductor.cs" />
-    <Compile Include="ShellViewModel.cs" />
-    <Compile Include="Shell\IShell.cs" />
     <Compile Include="IViewModel.cs" />
     <Compile Include="ViewModelDisposableBase.cs" />
     <Compile Include="ViewResolver.cs" />
@@ -142,12 +140,10 @@
       <Project>{05AB6158-CEED-4E2B-B03E-04F5E0E88BAD}</Project>
       <Name>CH9.Repository</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="ShellView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <ProjectReference Include="..\CH9.Shell\CH9.Shell.csproj">
+      <Project>{1DCDB00F-CBA6-4EA7-9C9C-30BD5B4492BF}</Project>
+      <Name>CH9.Shell</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

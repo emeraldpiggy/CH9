@@ -9,9 +9,8 @@ using System.Windows;
 using Caliburn.Micro;
 using CH9.Framework.Logging;
 using CH9.IOC;
-using CH9.MVVM.Shell;
+using CH9.Shell;
 using SimpleInjector;
-using Telerik.Windows.Controls;
 
 namespace CH9.MVVM
 {
@@ -121,10 +120,11 @@ namespace CH9.MVVM
             List<Assembly> allAssemblies = new List<Assembly>();
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            foreach (string dll in Directory.GetFiles(path, "CH9*.dll"))
-            {
-                allAssemblies.Add(Assembly.LoadFile(dll));
-            }
+            if (path != null)
+                foreach (string dll in Directory.GetFiles(path, "CH9*.dll"))
+                {
+                    allAssemblies.Add(Assembly.LoadFile(dll));
+                }
             return allAssemblies;
         }
 
@@ -140,7 +140,6 @@ namespace CH9.MVVM
         {
             Application.Startup += HandleStartup;
             Application.DispatcherUnhandledException += OnUnhandledException;
-            Application.Exit += OnExit;
         }
 
         protected override void StartDesignTime()
@@ -168,11 +167,6 @@ namespace CH9.MVVM
             OnLoaded(Container);
             var handler = Loaded;
             handler?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected override void OnExit(object sender, EventArgs e)
-        {
-            base.OnExit(sender, e);
         }
 
         protected override object GetInstance(Type serviceType, string key)

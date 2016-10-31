@@ -1,6 +1,4 @@
-using CH9.MVVM.Shell;
-
-namespace CH9.MVVM{
+namespace CH9.Shell{
     public class ShellViewModel :IShell
     {
     }

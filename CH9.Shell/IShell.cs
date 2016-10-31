@@ -1,3 +1,3 @@
-namespace CH9.MVVM.Shell {
+namespace CH9.Shell {
     public interface IShell {}
 }
