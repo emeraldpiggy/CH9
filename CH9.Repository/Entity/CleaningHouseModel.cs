@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -7,6 +8,7 @@ using CH9.Framework;
 
 namespace CH9.Repository.Entity
 {
+    [Serializable]
     public class CleaningHouseModel : EntityBase
     {
 
