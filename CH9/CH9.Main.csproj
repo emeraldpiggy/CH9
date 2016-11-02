@@ -105,14 +105,6 @@
       <Project>{9903F924-DFBA-4790-AFFA-36FCCA458B85}</Project>
       <Name>CH9.MVVM</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Cleaning.ViewModel\Cleaning.ViewModel.csproj">
-      <Project>{CE013234-651B-4C8D-B9D2-D68A5EE1272A}</Project>
-      <Name>Cleaning.ViewModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cleaning\Cleaning.View.csproj">
-      <Project>{F6056645-01AD-4A1A-B795-393633C4E76C}</Project>
-      <Name>Cleaning.View</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

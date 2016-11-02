@@ -10,6 +10,8 @@ using Caliburn.Micro;
 using CH9.Framework.Logging;
 using CH9.IOC;
 using CH9.Shell;
+using CH9.Shell.Base;
+using CH9.Shell.ViewModels;
 using SimpleInjector;
 
 namespace CH9.MVVM
