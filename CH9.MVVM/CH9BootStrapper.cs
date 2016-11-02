@@ -55,7 +55,7 @@ namespace CH9.MVVM
 
         protected override void Configure()
         {
-            //ViewResolver.Initialise();
+            ViewResolver.Initialise();
 
             try
             {
@@ -90,11 +90,12 @@ namespace CH9.MVVM
 
         private void RegisterInstance()
         {
+            _container.RegisterSingleton<IWindowManagerService>(new WindowManagerBase());
             _container.RegisterSingleton<IWindowManager>(new WindowManagerBase());
-            _container.Register<IShell, ShellViewModel>();
-            _container.Register<IWindowManagerService, WindowManagerBase>(Lifestyle.Transient);
+            _container.Register<IShell, ShellViewModel>(Lifestyle.Transient);
             _container.Register<IShellInitialise, ShellInitialise>(Lifestyle.Transient);
             _container.RegisterCollection<IShellInitialise>();
+
             _container.Register(typeof(IViewModel<>), new[] { typeof(ViewModelDisposableBase<>).Assembly }, Lifestyle.Transient);
 
 
@@ -106,13 +107,15 @@ namespace CH9.MVVM
                     .Where(t => t.Namespace != null && t.Namespace.StartsWith("CH9") && !t.Namespace.Contains("CH9.MVVM")
                     && !t.Namespace.Contains("CH9.IOC") && !t.Namespace.Contains("CH9.Repository")
                     && t.IsClass && !t.IsGenericType && t.GetInterfaces().Any())
-                    .Select(type => new {Service = type.GetInterfaces().First(), Implementation = type}).ToArray();
+                    .Select(type => new { Service = type.GetInterfaces().First(), Implementation = type }).ToArray();
 
                 foreach (var reg in registrations)
                 {
                     _container.Register(reg.Service, reg.Implementation, Lifestyle.Transient);
                 }
             }
+
+            //_container.Verify();
         }
 
         private static List<Assembly> GetAllAssemblies()
@@ -121,10 +124,12 @@ namespace CH9.MVVM
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             if (path != null)
+            {
                 foreach (string dll in Directory.GetFiles(path, "CH9*.dll"))
                 {
                     allAssemblies.Add(Assembly.LoadFile(dll));
                 }
+            }
             return allAssemblies;
         }
 
@@ -149,6 +154,17 @@ namespace CH9.MVVM
             {
                 FireLoaded();
             }
+        }
+
+        protected override void BuildUp(object instance)
+        {
+            var registration = _container.GetRegistration(instance.GetType(), true);
+            registration.Registration.InitializeInstance(instance);
+        }
+
+        protected override IEnumerable<Assembly> SelectAssemblies()
+        {
+            return GetAllAssemblies();
         }
 
         private void HandleStartup(object sender, StartupEventArgs e)
@@ -176,7 +192,10 @@ namespace CH9.MVVM
 
         protected override IEnumerable<object> GetAllInstances(Type serviceType)
         {
-            return _container.GetAllInstances(serviceType);
+            IServiceProvider provider = _container;
+            var collectionType = typeof(IEnumerable<>).MakeGenericType(serviceType);
+            var services = (IEnumerable<object>)provider.GetService(collectionType);
+            return services ?? Enumerable.Empty<object>();
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)

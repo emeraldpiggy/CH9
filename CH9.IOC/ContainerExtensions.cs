@@ -63,7 +63,7 @@ namespace CH9.IOC
             {
                 if (!args.Handled && !args.UnregisteredServiceType.IsAbstract)
                 {
-                    throw new ActivationException($"{args.UnregisteredServiceType}");
+                    //throw new ActivationException($"{args.UnregisteredServiceType}");
                 }
             };
         }
