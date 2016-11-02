@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converter="clr-namespace:CH9.Shell.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
+        <Grid.Resources>
+            <converter:EnableConverter x:Key="EnableConverter" />
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -13,13 +17,13 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Grid.Column="0" Margin="10">
-            <Button Content ="{Binding DustingDisplay, Mode=OneWay}"  Command="{Binding DCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30"/>
+            <Button Content ="{Binding DustingDisplay, Mode=OneWay}" IsEnabled="{Binding Dusting,Converter={StaticResource EnableConverter}}" Command="{Binding DCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30"/>
         </Grid>
         <Grid  Grid.Row="1" Grid.Column="0" Margin="10">
-            <Button Content ="{Binding VacummingDisplay,Mode=OneWay}" Command="{Binding VCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30"/>
+            <Button Content ="{Binding VacummingDisplay,Mode=OneWay}" IsEnabled="{Binding Vacumming,Converter={StaticResource EnableConverter}}" Command="{Binding VCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30"/>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="0" Margin="10">
-            <Button Content = "{Binding MoppingDisplay, Mode=OneWay}" Command="{Binding MCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30"/>
+            <Button Content = "{Binding MoppingDisplay, Mode=OneWay}" IsEnabled="{Binding Mopping,Converter={StaticResource EnableConverter}}" Command="{Binding MCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30"/>
     </Grid>
     </Grid>
 </UserControl>

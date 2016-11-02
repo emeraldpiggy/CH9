@@ -23,7 +23,7 @@ namespace CH9.Repository.Entity
 
         private bool _vacumming;
 
-        public bool Vacuuming
+        public bool Vacumming
         {
             get
             {

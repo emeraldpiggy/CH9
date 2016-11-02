@@ -25,32 +25,32 @@ namespace CH9.Shell.ViewModels
 
         private bool CanMoppingAction(object obj)
         {
-            return true;
+            return !Mopping;
         }
 
         private bool CanVacummingAction(object obj)
         {
-            return true;
+            return !Vacumming;
         }
 
         private bool CanDustingAction(object obj)
         {
-            return true;
+            return !Dusting;
         }
 
         private void MoppingAction(object obj)
         {
-            MessageBox.Show("I am Mopping");
+            Mopping = true;
         }
 
         private void VacummingAction(object obj)
         {
-            MessageBox.Show("I am Vacumming");
+            Vacumming = true;
         }
 
         private void DustingAction(object obj)
         {
-            MessageBox.Show("I am Dusting");
+            Dusting = true;
         }
 
 
@@ -73,20 +73,33 @@ namespace CH9.Shell.ViewModels
         public bool Dusting
         {
             get { return Model.Dusting; }
-            set { Model.Dusting = value; }
+            set
+            {
+                Model.Dusting = value;
+                OnPropertyChanged(nameof(Dusting));
+            }
         }
 
-        public bool Vacuuming
+        public bool Vacumming
         {
-            get { return Model.Vacuuming; }
-            set { Model.Vacuuming = value; }
+            get { return Model.Vacumming; }
+            set
+            {
+                Model.Vacumming = value;
+                OnPropertyChanged(nameof(Vacumming));
+            }
         }
 
 
         public bool Mopping
         {
             get { return Model.Mopping; }
-            set { Model.Mopping = value; }
+            set
+            {
+                Model.Mopping = value;
+                OnPropertyChanged(nameof(Mopping));
+
+            }
         }
 
 
