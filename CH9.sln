@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unittests.Package", "Unitte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CH9.Repository", "CH9.Repository\CH9.Repository.csproj", "{05AB6158-CEED-4E2B-B03E-04F5E0E88BAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService", "NotificationService\NotificationService.csproj", "{0AB6F3CF-10BE-49EE-B878-A2A9C945F1FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CH9.NotificationService", "NotificationService\CH9.NotificationService.csproj", "{0AB6F3CF-10BE-49EE-B878-A2A9C945F1FE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CH9.Shell", "CH9.Shell\CH9.Shell.csproj", "{1DCDB00F-CBA6-4EA7-9C9C-30BD5B4492BF}"
 EndProject
