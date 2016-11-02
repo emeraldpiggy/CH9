@@ -32,6 +32,7 @@ namespace CH9.IOC
     {
         public void ConfigureContainerRegistrations(Container container, RegistrationFilter registrationFilter)
         {
+
         }
     }
 }

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CH9.NotificationServices")]
+[assembly: AssemblyTitle("CH9.HubService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Towers Watson")]
-[assembly: AssemblyProduct("CH9.NotificationServices")]
+[assembly: AssemblyProduct("CH9.HubService")]
 [assembly: AssemblyCopyright("Copyright © Towers Watson 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b1c05b62-f77c-4d88-9b7a-7c683f3f3eb2")]
+[assembly: Guid("a559bae4-37e7-4381-9e31-0e73938f356d")]
 
 // Version information for an assembly consists of the following four values:
 //
