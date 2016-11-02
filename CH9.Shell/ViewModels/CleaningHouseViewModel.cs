@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using CH9.Repository.Entity;
 using CH9.Shell.Base;
+using CH9.Shell.Client;
 using Telerik.Windows.Controls;
 
 namespace CH9.Shell.ViewModels
@@ -41,18 +42,27 @@ namespace CH9.Shell.ViewModels
         private void MoppingAction(object obj)
         {
             Mopping = true;
+            SendSignal();
+
         }
 
         private void VacummingAction(object obj)
         {
             Vacumming = true;
+            SendSignal();
         }
 
         private void DustingAction(object obj)
         {
             Dusting = true;
+            SendSignal();
         }
 
+        private void SendSignal()
+        {
+            HubClient hc = new HubClient();
+            hc.SetupHubProxy();
+        }
 
         public ICommand DCommand => _dCommand;
         
@@ -76,7 +86,7 @@ namespace CH9.Shell.ViewModels
             set
             {
                 Model.Dusting = value;
-                OnPropertyChanged(nameof(Dusting));
+                NotifyOfPropertyChange(nameof(Dusting));
             }
         }
 
@@ -86,7 +96,7 @@ namespace CH9.Shell.ViewModels
             set
             {
                 Model.Vacumming = value;
-                OnPropertyChanged(nameof(Vacumming));
+                NotifyOfPropertyChange(nameof(Vacumming));
             }
         }
 
@@ -97,7 +107,7 @@ namespace CH9.Shell.ViewModels
             set
             {
                 Model.Mopping = value;
-                OnPropertyChanged(nameof(Mopping));
+                NotifyOfPropertyChange(nameof(Mopping));
 
             }
         }

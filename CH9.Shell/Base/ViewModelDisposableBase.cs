@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Caliburn.Micro;
 using CH9.Framework;
 using CH9.Repository.Annotations;
 
 namespace CH9.Shell.Base
 {
-    public abstract class ViewModelDisposableBase<T>:IViewModel<T>,IDisposable
+    public abstract class ViewModelDisposableBase<T>:PropertyChangedBase,IViewModel<T>,IDisposable
     {
         public T Model { get; set; }
         protected readonly IList<IDisposable> Disposables; 
