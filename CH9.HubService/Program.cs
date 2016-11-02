@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace CH9.HubService
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
+
         }
+    }
+
+
+    public class CH9Hub : Hub
+    {
+        
     }
 }
