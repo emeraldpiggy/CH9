@@ -10,8 +10,8 @@ namespace CH9.Repository.Entity
     public class CleaningHouseModel : EntityBase
     {
 
-        private string _dusting;
-        public string Dusting
+        private bool _dusting;
+        public bool Dusting
         {
             get { return _dusting; }
             set
@@ -21,9 +21,9 @@ namespace CH9.Repository.Entity
         }
 
 
-        private string _vacumming;
+        private bool _vacumming;
 
-        public string Vacuuming
+        public bool Vacuuming
         {
             get
             {
@@ -35,9 +35,9 @@ namespace CH9.Repository.Entity
             }
         }
 
-        private string _mopping;
+        private bool _mopping;
 
-        public string Mopping
+        public bool Mopping
         {
             get
             {
@@ -64,13 +64,12 @@ namespace CH9.Repository.Entity
             return true;
         }
 
-        public CleaningHouseModel(string dusting, string vacumming, string mopping)
+        public CleaningHouseModel(bool dusting, bool vacumming, bool mopping)
         {
             _dusting = dusting;
             _vacumming = vacumming;
-            this._mopping = mopping;
+            _mopping = mopping;
         }
-
     }
 }
 

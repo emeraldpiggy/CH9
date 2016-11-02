@@ -11,11 +11,11 @@ namespace CH9.Shell.Base
     public abstract class ViewModelDisposableBase<T>:IViewModel<T>,IDisposable
     {
         public T Model { get; set; }
-        private readonly IEnumerable<IDisposable> _disposables; 
+        protected readonly IList<IDisposable> Disposables; 
 
         protected ViewModelDisposableBase()
         {
-            _disposables = new List<IDisposable>();
+            Disposables = new List<IDisposable>();
         }
 
         ~ViewModelDisposableBase()
@@ -36,7 +36,7 @@ namespace CH9.Shell.Base
 
             IsDisposing = true;
             OnDispose(disposing);
-            if (disposing && _disposables != null)
+            if (disposing && Disposables != null)
             {
               
             }
@@ -52,9 +52,9 @@ namespace CH9.Shell.Base
         {
             if (disposing)
             {
-                if (_disposables.Any())
+                if (Disposables.Any())
                 {
-                    _disposables.ForEach(d=>d.Dispose());
+                    Disposables.ForEach(d=>d.Dispose());
                 }
             }
         }
