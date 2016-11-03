@@ -11,14 +11,13 @@ namespace CH9.HubService
         public void DetermineLength(string message)
         {
             Console.WriteLine(message);
-
             string newMessage = $@"{message} has a length of: {message.Length}";
             Clients.All.ReceiveLength(newMessage);
         }
 
-        public void PublishPropertyChanged(CleaningHouseModel model)
+        public void BroadcastViewModel(CleaningHouseModel chModel)
         {
-            
+            Clients.Others.UpdateModel(chModel);
         }
     }
 }

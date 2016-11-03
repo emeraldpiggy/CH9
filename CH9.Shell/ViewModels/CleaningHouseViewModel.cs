@@ -61,7 +61,7 @@ namespace CH9.Shell.ViewModels
 
         private void SendSignal()
         {
-            _hc.SetupHubProxy();
+            _hc.SetupHubProxy(Model);
         }
 
         public ICommand DCommand => _dCommand;

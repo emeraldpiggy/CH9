@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using CH9.Repository.Entity;
 using Microsoft.AspNet.SignalR.Client;
 
 namespace CH9.Shell.Client
@@ -13,11 +14,11 @@ namespace CH9.Shell.Client
             _traceWriter = traceWriter;
         }
 
-        public void Run(string url)
+        public void Run(string url, CleaningHouseModel vm)
         {
             try
             {
-                RunHubConnectionApi(url);
+                RunHubConnectionApi(url, vm);
             }
             catch (Exception exception)
             {
@@ -25,29 +26,19 @@ namespace CH9.Shell.Client
             }
         }
 
-        private void RunHubConnectionApi(string url)
+        private void RunHubConnectionApi(string url, CleaningHouseModel vm)
         {
             var hubConnection = new HubConnection(url) {TraceWriter = _traceWriter};
 
             var hubProxy = hubConnection.CreateHubProxy("CHub");
-            hubProxy.On<string>("displayMessage", (data) => hubConnection.TraceWriter.WriteLine(data));
+            hubProxy.On<CleaningHouseModel>("UpdateModel", (chVm) =>
+            {
+                vm = chVm;
+            });
 
             hubConnection.Start().Wait();
-            hubConnection.TraceWriter.WriteLine("transport.Name={0}", hubConnection.Transport.Name);
 
-            hubProxy.Invoke("DisplayMessageCaller", "Hello Caller!").Wait();
-
-            string joinGroupResponse = hubProxy.Invoke<string>("JoinGroup", hubConnection.ConnectionId, "CommonClientGroup").Result;
-            hubConnection.TraceWriter.WriteLine("joinGroupResponse={0}", joinGroupResponse);
-
-            hubProxy.Invoke("DisplayMessageGroup", "CommonClientGroup", "Hello Group Members!").Wait();
-
-            string leaveGroupResponse = hubProxy.Invoke<string>("LeaveGroup", hubConnection.ConnectionId, "CommonClientGroup").Result;
-            hubConnection.TraceWriter.WriteLine("leaveGroupResponse={0}", leaveGroupResponse);
-
-            hubProxy.Invoke("DisplayMessageGroup", "CommonClientGroup", "Hello Group Members! (caller should not see this message)").Wait();
-
-            hubProxy.Invoke("DisplayMessageCaller", "Hello Caller again!").Wait();
+            //hubProxy.Invoke("UpdateModel", vm).Wait();
         }
     }
 }
