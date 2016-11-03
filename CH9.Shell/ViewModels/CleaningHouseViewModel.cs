@@ -13,7 +13,7 @@ namespace CH9.Shell.ViewModels
         private ICommand _dCommand;
         private ICommand _vCommand;
         private ICommand _mCommand;
-
+        private readonly HubClient _hc;
         public CleaningHouseViewModel()
         {
             Model = new CleaningHouseModel(false, false, false);
@@ -21,6 +21,7 @@ namespace CH9.Shell.ViewModels
             _dCommand = new DelegateCommand(DustingAction, CanDustingAction);
             _vCommand = new DelegateCommand(VacummingAction, CanVacummingAction);
             _mCommand = new DelegateCommand(MoppingAction, CanMoppingAction);
+            _hc = new HubClient();
 
         }
 
@@ -60,8 +61,7 @@ namespace CH9.Shell.ViewModels
 
         private void SendSignal()
         {
-            HubClient hc = new HubClient();
-            hc.SetupHubProxy();
+            _hc.SetupHubProxy();
         }
 
         public ICommand DCommand => _dCommand;
@@ -86,7 +86,7 @@ namespace CH9.Shell.ViewModels
             set
             {
                 Model.Dusting = value;
-                NotifyOfPropertyChange(nameof(Dusting));
+                OnPropertyChanged(nameof(Dusting));
             }
         }
 
@@ -96,7 +96,7 @@ namespace CH9.Shell.ViewModels
             set
             {
                 Model.Vacumming = value;
-                NotifyOfPropertyChange(nameof(Vacumming));
+                OnPropertyChanged(nameof(Vacumming));
             }
         }
 
@@ -107,7 +107,7 @@ namespace CH9.Shell.ViewModels
             set
             {
                 Model.Mopping = value;
-                NotifyOfPropertyChange(nameof(Mopping));
+                OnPropertyChanged(nameof(Mopping));
 
             }
         }

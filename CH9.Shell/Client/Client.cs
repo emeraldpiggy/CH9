@@ -22,7 +22,6 @@ namespace CH9.Shell.Client
             catch (Exception exception)
             {
                 _traceWriter.WriteLine("Exception: {0}", exception);
-                throw;
             }
         }
 
@@ -30,7 +29,7 @@ namespace CH9.Shell.Client
         {
             var hubConnection = new HubConnection(url) {TraceWriter = _traceWriter};
 
-            var hubProxy = hubConnection.CreateHubProxy("Ch9Hub");
+            var hubProxy = hubConnection.CreateHubProxy("CHub");
             hubProxy.On<string>("displayMessage", (data) => hubConnection.TraceWriter.WriteLine(data));
 
             hubConnection.Start().Wait();

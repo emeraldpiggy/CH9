@@ -7,7 +7,7 @@ namespace CH9.HubService
     {
         static void Main(string[] args)
         {
-            string url = @"http://localhost:8080/";
+            string url = @"http://localhost:8088/Ch9";
             using (WebApp.Start<Startup>(url))
             {
                 Console.WriteLine($"Server running at {url}");

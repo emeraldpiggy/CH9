@@ -4,8 +4,8 @@ using Microsoft.AspNet.SignalR.Hubs;
 
 namespace CH9.HubService
 {
-    [HubName("Ch9Hub")]
-    internal class Ch9Hub : Hub
+    [HubName("CHub")]
+    public class CHub : Hub
     {
         public void DetermineLength(string message)
         {

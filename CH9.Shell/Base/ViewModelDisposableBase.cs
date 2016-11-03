@@ -66,7 +66,7 @@ namespace CH9.Shell.Base
             GC.SuppressFinalize(this);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public override event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

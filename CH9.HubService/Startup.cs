@@ -5,7 +5,7 @@ using Owin;
 
 namespace CH9.HubService
 {
-    internal class Startup
+    public class Startup
     {
         public void Configuration(IAppBuilder app)
         {

@@ -9,7 +9,7 @@ namespace CH9.Shell.Client
     {
         public void SetupHubProxy()
         {
-            string url = @"http://localhost:8080/Ch9";
+            string url = @"http://localhost:8088/Ch9";
             var writer = Console.Out;
             var client = new Client(writer);
             client.Run(url);
