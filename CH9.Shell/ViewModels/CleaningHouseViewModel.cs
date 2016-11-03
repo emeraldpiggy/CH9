@@ -61,7 +61,14 @@ namespace CH9.Shell.ViewModels
 
         private void SendSignal()
         {
-            _hc.SetupHubProxy(Model);
+            _hc.SetupHubProxy(UpdateVm, Model);
+        }
+
+        private void UpdateVm(CleaningHouseModel vm)
+        {
+            Dusting = vm.Dusting;
+            Vacumming = vm.Vacumming;
+            Mopping = vm.Mopping;
         }
 
         public ICommand DCommand => _dCommand;

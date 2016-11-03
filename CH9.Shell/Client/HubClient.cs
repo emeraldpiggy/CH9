@@ -8,12 +8,12 @@ namespace CH9.Shell.Client
 {
     public class HubClient
     {
-        public void SetupHubProxy(CleaningHouseModel vm)
+        public void SetupHubProxy(Action<CleaningHouseModel> updateVm, CleaningHouseModel vm)
         {
             string url = @"http://localhost:8088/Ch9";
             var writer = Console.Out;
             var client = new Client(writer);
-            client.Run(url, vm);
+            client.Run(url, updateVm, vm);
 
         }
     }

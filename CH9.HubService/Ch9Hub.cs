@@ -8,16 +8,22 @@ namespace CH9.HubService
     [HubName("CHub")]
     public class CHub : Hub
     {
-        public void DetermineLength(string message)
-        {
-            Console.WriteLine(message);
-            string newMessage = $@"{message} has a length of: {message.Length}";
-            Clients.All.ReceiveLength(newMessage);
-        }
-
         public void BroadcastViewModel(CleaningHouseModel chModel)
         {
-            Clients.Others.UpdateModel(chModel);
+            LogMessage(chModel);
+            Clients.All.addMessage(chModel);
+        }
+
+        public CleaningHouseModel Send(CleaningHouseModel chModel)
+        {
+            LogMessage(chModel);
+            BroadcastViewModel(chModel);
+            return chModel;
+        }
+
+        private void LogMessage(CleaningHouseModel chModel)
+        {
+            Console.WriteLine("CleaningHouse Model, 'Dusting' {0}, 'Mopping' {1} ,'Vacumming' {2}", chModel.Dusting, chModel.Mopping, chModel.Vacumming);
         }
     }
 }

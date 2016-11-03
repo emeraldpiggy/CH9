@@ -14,11 +14,11 @@ namespace CH9.Shell.Client
             _traceWriter = traceWriter;
         }
 
-        public void Run(string url, CleaningHouseModel vm)
+        public void Run(string url, Action<CleaningHouseModel> updateVm, CleaningHouseModel vm)
         {
             try
             {
-                RunHubConnectionApi(url, vm);
+                RunHubConnectionApi(url, updateVm, vm);
             }
             catch (Exception exception)
             {
@@ -26,19 +26,17 @@ namespace CH9.Shell.Client
             }
         }
 
-        private void RunHubConnectionApi(string url, CleaningHouseModel vm)
+        private void RunHubConnectionApi(string url, Action<CleaningHouseModel> updateVm, CleaningHouseModel vm)
         {
             var hubConnection = new HubConnection(url) {TraceWriter = _traceWriter};
 
             var hubProxy = hubConnection.CreateHubProxy("CHub");
-            hubProxy.On<CleaningHouseModel>("UpdateModel", (chVm) =>
-            {
-                vm = chVm;
-            });
+            
+            hubProxy.On("addMessage", updateVm);
 
             hubConnection.Start().Wait();
 
-            //hubProxy.Invoke("UpdateModel", vm).Wait();
+            hubProxy.Invoke<CleaningHouseModel>("Send", vm).Wait();
         }
     }
 }
