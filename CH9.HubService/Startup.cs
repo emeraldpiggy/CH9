@@ -11,36 +11,22 @@ namespace CH9.HubService
         {
             app.UseErrorPage();
 
-            //app.Map("/raw-connection", map =>
-            //{
-            //    // Turns cors support on allowing everything
-            //    // In real applications, the origins should be locked down
-            //    map.UseCors(CorsOptions.AllowAll)
-            //       .RunSignalR<RawConnection>();
-            //});
+            var hubConfiguration = new HubConfiguration
+            {
+#if DEBUG
+                EnableDetailedErrors = true
+#else
+                EnableDetailedErrors = false
+#endif
+            };
 
-            //app.Map("/signalr", map =>
-            //{
-            //    var config = new HubConfiguration
-            //    {
-            //        // You can enable JSONP by uncommenting this line
-            //        // JSONP requests are insecure but some older browsers (and some
-            //        // versions of IE) require JSONP to work cross domain
-            //        // EnableJSONP = true
-            //    };
-
-            //    // Turns cors support on allowing everything
-            //    // In real applications, the origins should be locked down
-            //    map.UseCors(CorsOptions.AllowAll)
-            //       .RunSignalR(config);
-            //});
-
+            app.MapSignalR(hubConfiguration);
             app.UseCors(CorsOptions.AllowAll);
-            app.MapSignalR();
+            app.MapSignalR(hubConfiguration);
 
             // Turn tracing on programmatically
-            GlobalHost.TraceManager.Switch.Level = SourceLevels.Information;
-            
+            GlobalHost.TraceManager.Switch.Level = SourceLevels.All;
+
         }
     }
 }

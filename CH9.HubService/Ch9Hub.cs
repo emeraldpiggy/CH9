@@ -1,4 +1,5 @@
 using System;
+using CH9.Repository.Entity;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 
@@ -13,6 +14,11 @@ namespace CH9.HubService
 
             string newMessage = $@"{message} has a length of: {message.Length}";
             Clients.All.ReceiveLength(newMessage);
+        }
+
+        public void PublishPropertyChanged(CleaningHouseModel model)
+        {
+            
         }
     }
 }
