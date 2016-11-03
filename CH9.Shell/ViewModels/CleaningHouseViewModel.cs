@@ -22,6 +22,7 @@ namespace CH9.Shell.ViewModels
             _vCommand = new DelegateCommand(VacummingAction, CanVacummingAction);
             _mCommand = new DelegateCommand(MoppingAction, CanMoppingAction);
             _hc = new HubClient();
+            _hc.SetupHubProxy(UpdateVm);
 
         }
 
@@ -61,7 +62,7 @@ namespace CH9.Shell.ViewModels
 
         private void SendSignal()
         {
-            _hc.SetupHubProxy(UpdateVm, Model);
+            _hc.SendMessage(Model);
         }
 
         private void UpdateVm(CleaningHouseModel vm)

@@ -10,20 +10,20 @@ namespace CH9.HubService
     {
         public void BroadcastViewModel(CleaningHouseModel chModel)
         {
-            LogMessage(chModel);
-            Clients.All.addMessage(chModel);
+            LogMessage("BroadCast ViewModel", chModel);
+            Clients.All.UpdateModel(chModel);
         }
 
         public CleaningHouseModel Send(CleaningHouseModel chModel)
         {
-            LogMessage(chModel);
+            LogMessage("Receive Message",chModel);
             BroadcastViewModel(chModel);
             return chModel;
         }
 
-        private void LogMessage(CleaningHouseModel chModel)
+        private void LogMessage(string caller,CleaningHouseModel chModel)
         {
-            Console.WriteLine("CleaningHouse Model, 'Dusting' {0}, 'Mopping' {1} ,'Vacumming' {2}", chModel.Dusting, chModel.Mopping, chModel.Vacumming);
+            Console.WriteLine("{3}, 'Dusting' {0}, 'Mopping' {1} ,'Vacumming' {2}", chModel.Dusting, chModel.Mopping, chModel.Vacumming, caller);
         }
     }
 }

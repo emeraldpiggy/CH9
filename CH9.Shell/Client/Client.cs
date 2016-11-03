@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows.Threading;
 using CH9.Repository.Entity;
 using Microsoft.AspNet.SignalR.Client;
 
@@ -8,17 +9,17 @@ namespace CH9.Shell.Client
     public class Client
     {
         private readonly TextWriter _traceWriter;
-
+        private IHubProxy _hubProxy;
         public Client(TextWriter traceWriter)
         {
             _traceWriter = traceWriter;
         }
 
-        public void Run(string url, Action<CleaningHouseModel> updateVm, CleaningHouseModel vm)
+        public void Run(string url, Action<CleaningHouseModel> updateVm)
         {
             try
             {
-                RunHubConnectionApi(url, updateVm, vm);
+                RunHubConnectionApi(url, updateVm);
             }
             catch (Exception exception)
             {
@@ -26,17 +27,21 @@ namespace CH9.Shell.Client
             }
         }
 
-        private void RunHubConnectionApi(string url, Action<CleaningHouseModel> updateVm, CleaningHouseModel vm)
+        private void RunHubConnectionApi(string url, Action<CleaningHouseModel> updateVm)
         {
             var hubConnection = new HubConnection(url) {TraceWriter = _traceWriter};
 
-            var hubProxy = hubConnection.CreateHubProxy("CHub");
+            _hubProxy = hubConnection.CreateHubProxy("CHub");
             
-            hubProxy.On("addMessage", updateVm);
+            _hubProxy.On("UpdateModel",updateVm);
 
             hubConnection.Start().Wait();
 
-            hubProxy.Invoke<CleaningHouseModel>("Send", vm).Wait();
+        }
+
+        public void SendMessage(CleaningHouseModel vm)
+        {
+            _hubProxy.Invoke<CleaningHouseModel>("Send", vm).Wait();
         }
     }
 }

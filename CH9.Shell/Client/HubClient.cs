@@ -1,20 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CH9.Repository.Entity;
 
 namespace CH9.Shell.Client
 {
     public class HubClient
     {
-        public void SetupHubProxy(Action<CleaningHouseModel> updateVm, CleaningHouseModel vm)
+        private Client _client;
+        public void SetupHubProxy(Action<CleaningHouseModel> updateVm)
         {
             string url = @"http://localhost:8088/Ch9";
             var writer = Console.Out;
-            var client = new Client(writer);
-            client.Run(url, updateVm, vm);
+            _client = new Client(writer);
+            _client.Run(url, updateVm);
+        }
 
+        public void SendMessage(CleaningHouseModel vm)
+        {
+            _client.SendMessage(vm);
         }
     }
 }
